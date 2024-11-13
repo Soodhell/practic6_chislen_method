@@ -1,0 +1,73 @@
+package org.example;
+
+public class Main {
+
+    public static double leftP(int N){
+        double result = 0;
+        double interval = (double) 1 / N;
+        double a = interval;
+
+        for(int i = 0; i < N; i++){
+
+            if(i < 3) System.out.println(((double) 1/N) * (result + Math.cos(a*a + a)));
+            if(i > N-4) System.out.println(((double) 1/N) * (result + Math.cos(a*a + a)));
+
+            result = result + Math.cos(a*a + a);
+            a += interval;
+        }
+
+        return ((double) 1/N) * result;
+    }
+
+    public static double trapezoidal2() {
+        int N = 1000;
+        double result = 0;
+        double interval = (Math.PI/4) / N;
+        double a = 0;
+        double b = interval;
+
+        for (int i = 0; i < N; i++) {
+
+            if(i < 3) System.out.println(((b-a)/N)* (result + (((Math.sin(4*a)))+(Math.sin(4*b)))/2));
+            if(i > N-4) System.out.println(((b-a)/N)* (result + (((Math.sin(4*a)))+(Math.sin(4*b)))/2));
+
+            result = result + (((Math.sin(4*a)))+(Math.sin(4*b)))/2;
+            a = a + interval;
+            b = b + interval;
+            if(b > Math.PI) break;
+
+        }
+        return ((b-a)/N)*result;
+    }
+
+    public static double trapezoidal1() {
+        int N = 1000;
+        double result = 0;
+        double interval = (Math.PI/4) / N;
+        double a = 0;
+        double b = interval;
+
+        System.out.println(interval);
+
+        for (int i = 0; i < N; i++) {
+
+            if(i < 3) System.out.println(((b-a)/N)* (result + (((Math.sin(4*a)))+(Math.sin(4*b)))/2));
+            if(i > N-4) System.out.println(((b-a)/N)* (result + (((Math.sin(4*a)))+(Math.sin(4*b)))/2));
+
+            result = result + ((Math.log(1 + Math.cos(a)))+(Math.log(1 + Math.cos(b))))/2;
+            a = a + interval;
+            b = b + interval;
+            if(b > Math.PI) break;
+        }
+        return ((b-a)/N)*result;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(Main.leftP(50));
+
+    }
+
+
+
+}
